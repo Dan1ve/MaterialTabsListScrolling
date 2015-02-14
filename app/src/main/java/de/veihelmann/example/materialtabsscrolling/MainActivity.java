@@ -29,7 +29,7 @@ public class MainActivity extends ActionBarActivity {
     private void setupRecyclerView() {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
 
-        // Let's a grid with 2 columns.
+        // Let's use a grid with 2 columns.
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         populateRecyclerView(recyclerView);
 
@@ -53,17 +53,21 @@ public class MainActivity extends ActionBarActivity {
             }
 
             private void showToolbar() {
+                toolbarContainer.clearAnimation();
                 toolbarContainer
                         .animate()
                         .translationY(0)
                         .start();
+
             }
 
             private void hideToolbar() {
+                toolbarContainer.clearAnimation();
                 toolbarContainer
                         .animate()
                         .translationY(-tabBar.getBottom())
                         .start();
+
             }
 
             @Override

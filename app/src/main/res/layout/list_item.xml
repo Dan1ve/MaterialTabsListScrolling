@@ -1,0 +1,7 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="140dp"
+    android:layout_width="120dp"
+    android:background="@android:color/white"
+    android:text="Item"
+    android:gravity="center"
+    android:layout_margin="8dp" />

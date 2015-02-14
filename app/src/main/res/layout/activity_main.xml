@@ -1,0 +1,48 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <View
+        android:id="@+id/colored_background_view"
+        android:layout_width="wrap_content"
+        android:layout_height="192dp"
+        android:background="#f16b0c" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="120dp"
+        android:clipToPadding="false"
+        android:id="@+id/recyclerview" />
+
+    <LinearLayout
+        android:id="@+id/toolbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f16b0c"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/abc_action_bar_default_height_material" />
+
+        <!-- Our fake tab ;-) -->
+        <TextView
+            android:id="@+id/fake_tab"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:textAllCaps="true"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:textStyle="bold"
+            android:text="Fake tab" />
+
+    </LinearLayout>
+
+
+</FrameLayout>

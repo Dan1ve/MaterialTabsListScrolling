@@ -4,7 +4,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * Created by Dani on 15.02.2015.
+ * A OnScrollListener that hides the toolbar on scroll events.
+ * Created by Daniel Veihelmann on 15.02.2015.
  */
 public class ToolbarHidingOnScrollListener extends RecyclerView.OnScrollListener {
 
@@ -45,7 +46,7 @@ public class ToolbarHidingOnScrollListener extends RecyclerView.OnScrollListener
         }
     }
 
-    private void showToolbar() {
+    protected void showToolbar() {
         toolbarContainer.clearAnimation();
         toolbarContainer
                 .animate()
@@ -97,7 +98,7 @@ public class ToolbarHidingOnScrollListener extends RecyclerView.OnScrollListener
     }
 
 
-    private void showToolbarBy(int dy) {
+    protected void showToolbarBy(int dy) {
         if (cannotShowMore(dy)) {
             toolbarContainer.setTranslationY(0);
         } else {

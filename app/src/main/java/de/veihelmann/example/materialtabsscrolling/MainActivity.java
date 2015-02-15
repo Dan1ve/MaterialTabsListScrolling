@@ -33,86 +33,12 @@ public class MainActivity extends ActionBarActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         populateRecyclerView(recyclerView);
 
-        final View tabBar = findViewById(R.id.fake_tab);
-        final View coloredBackgroundView = findViewById(R.id.colored_background_view);
-        final View toolbarContainer = findViewById(R.id.toolbar_container);
-        final View toolbar = findViewById(R.id.toolbar);
+        View tabBar = findViewById(R.id.fake_tab);
+        View coloredBackgroundView = findViewById(R.id.colored_background_view);
+        View toolbarContainer = findViewById(R.id.toolbar_container);
+        View toolbar = findViewById(R.id.toolbar);
 
-        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    if (Math.abs(toolbarContainer.getTranslationY()) > toolbar.getHeight()) {
-                        hideToolbar();
-                    } else {
-                        showToolbar();
-                    }
-                }
-            }
-
-            private void showToolbar() {
-                toolbarContainer.clearAnimation();
-                toolbarContainer
-                        .animate()
-                        .translationY(0)
-                        .start();
-
-            }
-
-            private void hideToolbar() {
-                toolbarContainer.clearAnimation();
-                toolbarContainer
-                        .animate()
-                        .translationY(-tabBar.getBottom())
-                        .start();
-
-            }
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-
-                scrollColoredViewParallax(dy);
-
-                if (dy > 0) {
-                    hideToolbarBy(dy);
-                } else {
-                    showToolbarBy(dy);
-                }
-            }
-
-            private void scrollColoredViewParallax(int dy) {
-                coloredBackgroundView.setTranslationY(coloredBackgroundView.getTranslationY() - dy / 3);
-            }
-
-
-            private void hideToolbarBy(int dy) {
-                if (canHideMore(dy)) {
-                    toolbarContainer.setTranslationY(-tabBar.getBottom());
-                } else {
-                    toolbarContainer.setTranslationY(toolbarContainer.getTranslationY() - dy);
-                }
-            }
-
-            private boolean canHideMore(int dy) {
-                return Math.abs(toolbarContainer.getTranslationY() - dy) > tabBar.getBottom();
-            }
-
-
-            private void showToolbarBy(int dy) {
-                if (canShowMore(dy)) {
-                    toolbarContainer.setTranslationY(0);
-                } else {
-                    toolbarContainer.setTranslationY(toolbarContainer.getTranslationY() - dy);
-                }
-            }
-
-            private boolean canShowMore(int dy) {
-                return toolbarContainer.getTranslationY() - dy > 0;
-            }
-        });
+        recyclerView.setOnScrollListener(new ToolbarHidingOnScrollListener(toolbarContainer, toolbar, tabBar, coloredBackgroundView));
     }
 
 
